@@ -10,6 +10,10 @@ app.prepare()
 .then(() => {
     const server = express()
 
+    server.get('/sayhello', (req, res) => {
+        return res.sendStatus(200);
+    });
+
     server.get('*', (req, res) => {
         return handle(req, res)
     })

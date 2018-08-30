@@ -1,4 +1,4 @@
-const axio = require('axios');
+import {basicPing} from '../components/ajax.js';
 
 class AjaxButtons extends React.Component {
     constructor(props) {
@@ -9,9 +9,9 @@ class AjaxButtons extends React.Component {
     componentDidMount() {
 
     }
-    
+
     handleHello() {
-        console.log("Let's say hi to the server!");
+        basicPing();
     }
 
     render() {
