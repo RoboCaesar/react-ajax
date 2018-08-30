@@ -14,6 +14,11 @@ app.prepare()
         return res.sendStatus(200);
     });
 
+    server.get('/returnobject', (req, res) => {
+        let myObject = [4, 8, 15, 16, 23, 42];
+        return res.send(myObject)
+    });
+
     server.get('*', (req, res) => {
         return handle(req, res)
     })

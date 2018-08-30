@@ -1,25 +1,53 @@
-import {basicPing} from '../components/ajax.js';
+const axios = require('axios');
 
 class AjaxButtons extends React.Component {
     constructor(props) {
         super(props);
-        this.handleHello = this.handleHello.bind();
-    }
-
-    componentDidMount() {
-
+        this.handleHello = this.handleHello.bind(this);
+        this.handleGetInfo = this.handleGetInfo.bind(this);
+        this.state = {
+            numbers: [],
+            testVar: 'nothing'
+        }
     }
 
     handleHello() {
-        basicPing();
+        axios.get('/sayhello')
+        .then((response) => {
+          alert(response);
+        })
+        .catch((error) => {
+          alert(error)
+        })
+        .then(() => {
+      
+        });
+    }
+
+    handleGetInfo() {
+        axios.get('/returnobject')
+        .then((response) => {
+          this.setState(() => {
+            return {
+                numbers: response.data
+            }
+          });
+        })
+        .catch((error) => {
+          console.log(error)
+          //return "Didn't work";
+        })
+        .then(() => {
+          console.log('Request sent');
+        });
     }
 
     render() {
         return (
             <div>
                 <button onClick={this.handleHello}>Say hi to the server.</button>
-                <button>Get the server's uptime.</button>
-                <h3>Server uptime: Unknown</h3>
+                <button onClick={this.handleGetInfo}>Get some numbers from the server.</button>
+                <h3>Numbers: {this.state.numbers}</h3>
             </div>
         );
     }
