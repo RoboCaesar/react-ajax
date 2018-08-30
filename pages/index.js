@@ -1,12 +1,23 @@
+const axio = require('axios');
+
 class AjaxButtons extends React.Component {
     constructor(props) {
         super(props);
+        this.handleHello = this.handleHello.bind();
+    }
+
+    componentDidMount() {
+
+    }
+    
+    handleHello() {
+        console.log("Let's say hi to the server!");
     }
 
     render() {
         return (
             <div>
-                <button>Say hi to the server.</button>
+                <button onClick={this.handleHello}>Say hi to the server.</button>
                 <button>Get the server's uptime.</button>
                 <h3>Server uptime: Unknown</h3>
             </div>
